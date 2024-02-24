@@ -5,6 +5,10 @@ from PIL import Image, ImageTk
 import os
 from tkinter import messagebox
 import time
+## dans le fichier versment on import la classe accueil
+from accueil import Accueil
+from versementFrame import VersementFrame
+from client import Client
 
 class utilisateur:
     def __init__(self, root):
@@ -69,17 +73,17 @@ class utilisateur:
         def accueil_page():
             accueil_page_fm = tk.Frame(main_fm)
 
-            accueil_page_lb = tk.Label(accueil_page_fm, text="PAGE D'ACCUEIL", font=("Arial", 30), fg="#0097e8")
-            accueil_page_lb.pack(pady=80)
+            Accueil(accueil_page_fm)
 
             accueil_page_fm.pack(fill=tk.BOTH, expand=True)
 
         ### Page Versment
         def versement_page():
+           
             versement_page_fm = tk.Frame(main_fm)
-
-            versement_page_lb = tk.Label(versement_page_fm, text="PAGE VERSEMENT", font=("Arial", 30), fg="#0097e8")
-            versement_page_lb.pack(pady=80)
+ 
+        
+            VersementFrame(versement_page_fm)
 
             versement_page_fm.pack(fill=tk.BOTH, expand=True)
 
@@ -87,8 +91,7 @@ class utilisateur:
         def client_page():
             client_page_fm = tk.Frame(main_fm)
 
-            client_page_lb = tk.Label(client_page_fm, text="PAGE CLIENT", font=("Arial", 30), fg="#0097e8")
-            client_page_lb.pack(pady=80)
+            Client(client_page_fm)
 
             client_page_fm.pack(fill=tk.BOTH, expand=True)
 
