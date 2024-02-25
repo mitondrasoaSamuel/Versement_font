@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
-
+from configAPI import API
 
 class VersementFrame:
     def __init__(self, frame):
@@ -17,6 +17,9 @@ class VersementFrame:
 
         # Num_compte
         lbl_num_compte = Label(frame, text="N° Compte :", font=("Arial", 14), bg="white").place(x=50, y=85)
+
+        clients = API.get_clients()
+        num_comptes = [account["num_compte"] for account in clients]
 
         self.entre_compte =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
         self.entre_compte.place(x=250, y=85, width=250)
