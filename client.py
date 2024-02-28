@@ -7,6 +7,9 @@ import random
 from tkinter import messagebox
 
 class Client:
+    ### Gerer utilisateur connecte 
+    TOKEN = "1|Alquur2FPriNJ7mPrXxNSzswP4yDGGXRHBYKr4Jbc3d7af61"
+    HEADER = {"Authorization" : f"Bearer {TOKEN}"}
 
     def reset_client(self):
         self.entre_compte.config(state="normal")
@@ -18,7 +21,7 @@ class Client:
     ### Recuperer liste des clients 
     def fetch_client(self):
         #### list versement
-        data = req.get(API.CLIENT_URL, headers=API.HEADER).json()
+        data = req.get(API.CLIENT_URL, headers=self.HEADER).json()
 
         for row in self.versementliste.get_children():
            self.versementliste.delete(row)
@@ -34,18 +37,21 @@ class Client:
             'solde': float(self.entre_solde.get())
         }
 
-        res = req.post(API.CLIENT_URL, dataClient,headers=API.HEADER)
+        res = req.post(API.CLIENT_URL, dataClient,headers=self.HEADER).json()
 
-        if(res.json()):
+        if(res):
             self.fetch_client()
             self.reset_client()
             messagebox.showinfo("AJOUT CLIENT", "Ajoute avec succes")
         else:
             messagebox.showerror("AJOUT CLIENT", "Erreur de l'ajout")
-  
+    
+    def get_clients(self):
+        return req.get(API.CLIENT_URL, headers=self.HEADER).json()
+    
     def get_client_id(self):
         selected_id = None
-        for num_compte in API.get_clients():
+        for num_compte in self.get_clients():
             if num_compte["num_compte"] == self.entre_compte.get():
                 selected_id = num_compte["id"]
                 break
@@ -60,23 +66,20 @@ class Client:
             'solde': float(self.entre_solde.get())
         }
 
-        if self.get_client_id() is not None:
-            res = req.put(API.CLIENT_URL+"/"+str(self.get_client_id()), dataClient,headers=API.HEADER)
-        
-            if(res.json()):
-                messagebox.showinfo("MODIFICATION CLIENT", "Modification avec succes")
-                self.fetch_client()
-                self.reset_client()
+        res = req.put(API.CLIENT_URL+"/"+str(self.get_client_id()), dataClient,headers=self.HEADER).json()
 
-            else:
-                messagebox.showerror("MODIFICATION CLIENT", "Erreur de modification")
+        if(res):
+            messagebox.showinfo("MODIFICATION CLIENT", "Modification avec succes")
+            self.fetch_client()
+            self.reset_client()
+
         else:
-            messagebox.showerror("MODIFICATION CLIENT", "ID Client introuvable")
+            messagebox.showerror("MODIFICATION CLIENT", "Erreur de modification")
     
     def delete_client(self):
-        res = req.delete(API.CLIENT_URL+"/"+str(self.get_client_id()), headers=API.HEADER)
+        res = req.delete(API.CLIENT_URL+"/"+str(self.get_client_id()), headers=self.HEADER).json()
 
-        if(res.json()):
+        if(res):
             messagebox.showinfo("SUPPRESSION CLIENT", "Suppression avec succes")
             self.fetch_client()
             self.reset_client()
@@ -85,7 +88,7 @@ class Client:
             messagebox.showerror("SUPPRESSION CLIENT", "Erreur de suppression")
 
     def generer_numero_compte(self):
-        numero_compte = ''.join([str(random.randint(0, 9)) for _ in range(8)])  # Vous pouvez ajuster la longueur du numéro de compte si nécessaire
+        numero_compte = ''.join([str(random.randint(1, 9)) for _ in range(8)])  # Vous pouvez ajuster la longueur du numéro de compte si nécessaire
         return numero_compte
     
     def get_selected_items(self, _):
