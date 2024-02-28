@@ -8,7 +8,6 @@ from tkinter import messagebox
 
 class Client:
     ### Gerer utilisateur connecte 
-    #TOKEN = "1|Alquur2FPriNJ7mPrXxNSzswP4yDGGXRHBYKr4Jbc3d7af61"
     HEADER = API.HEADER
 
     def reset_client(self):
