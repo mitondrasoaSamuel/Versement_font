@@ -8,8 +8,7 @@ from tkinter import messagebox
 
 class Client:
     ### Gerer utilisateur connecte 
-    TOKEN = "1|Alquur2FPriNJ7mPrXxNSzswP4yDGGXRHBYKr4Jbc3d7af61"
-    HEADER = {"Authorization" : f"Bearer {TOKEN}"}
+    HEADER = API.HEADER
 
     def reset_client(self):
         self.entre_compte.config(state="normal")
