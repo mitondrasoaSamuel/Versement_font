@@ -3,6 +3,8 @@ class API:
     API = "http://87.98.242.78:8081/api/"
     CLIENT_URL = API + "client"
     VERSEMENT_URL =  API + "versement"
+    AUDIT_URL = API + "audit"
+    USER_URL = API + "user"
     USER_LOGIN = API + "login"
     USER_REGISTER =  API + "register"
     AUDIT_URL = API + "audit/total"
