@@ -3,10 +3,44 @@ from tkinter import *
 from tkinter import ttk
 from configAPI import API
 import requests as req
+from tkinter import messagebox
 
 class VersementFrame:
     
+#     def reset_versement(self):
+#         self.entre_versement.config(state="normal")
+#         self.entre_compte.insert(0, self.generer_numero_compte()) 
+#         self.entre_cheque.delete(0, tk.END)
+#         self.entre_montant.delete(0, tk.END)
+    
+    ### Recuperer liste des clients 
+    def fetch_versement(self):
+        #### list versement
+        data = req.get(API.VERSEMENT_URL, headers=API.HEADER).json()
+      
+        for row in self.versementliste.get_children():
+           self.versementliste.delete(row)
+        
+        for item in data: 
+           self.versementliste.insert('', 'end', values=(item['num_versement'], item['num_cheque'], item['client_id'], item['montant']))
 
+#     def add_versement(self):
+#         dataVersement = {
+#             'num_versement': self.entre_versement.get(),
+#             'num_cheque': self.entre_cheque.get(),
+#             'client_id': self.entre_compte.get(),
+#             'montant': float(self.entre_montant.get())
+#         }
+
+#         res = req.post(API.CLIENT_URL, dataVersement,headers=self.HEADER).json()
+
+#         if(res):
+#             self.fetch_versement()
+#             self.reset_versement()
+#             messagebox.showinfo("AJOUT VERSEMENT", "Ajoute avec succes")
+#         else:
+#             messagebox.showerror("AJOUT VERSEMENT", "Erreur de l'ajout")
+    
 
 
     def __init__(self, frame):
@@ -50,8 +84,37 @@ class VersementFrame:
         # img = ImageTk.PhotImage(Image.open("")) 
                 ## Ajouter
         
-        self.ajout_btn = Button(frame, text="Ajouter", font=("times new roman", 20, "bold"), cursor="hand2", bg="green", state="normal")
-        self.ajout_btn.place(x=630, y=150, height=40, width=150)
+        self.ajout_btn = Button(frame, text="Ajouter", font=("times new roman", 20, "bold"), cursor="hand2", bg="green", state="normal"
+                                # , command=self.add_versement
+                                )
+        self.ajout_btn.place(x=330, y=150, height=40, width=150)
+
+                ###  Bouton 
+                ## Supprimer
+        
+        self.supprimer_btn = Button(frame, text="Supprimer", font=("times new roman", 20, "bold"), cursor="hand2", bg="red", state="normal"
+                                #     , command=self.delete_client
+                                    )
+        self.supprimer_btn.place(x=630, y=150, height=40, width=150)
+
+
+        ###  Bouton 
+                ## Modifier
+        
+        self.modifier_btn = Button(frame, text="Modifier", font=("times new roman", 20, "bold"), cursor="hand2", bg="gray", state="normal"
+                                #    , command=self.update_client
+                                   )
+        self.modifier_btn.place(x=830, y=150, height=40, width=150)
+
+
+        ###  Bouton 
+                ## Reinitialiser
+        
+        self.reinitialiser_btn = Button(frame, text="Rieinitialiser", font=("times new roman", 20, "bold"), cursor="hand2", bg="white", state="normal"
+                                        # , command=self.reset_versement
+                                        )
+        self.reinitialiser_btn.place(x=1000, y=150, height=40, width=160)
+
 
              ##### Liste Versement
                     #3 Creation  de frame
@@ -71,6 +134,9 @@ class VersementFrame:
         self.versementliste.heading("num_cheque", text="N° Chèque")
         self.versementliste.heading("montant", text="Montant")
 
+
+        self.fetch_versement()
+        # self.versementliste.bind('<<TreeviewSelect>>', self.get_selected_items) ## recuperer les elements selectionee dans la liste
         self.versementliste["show"]="headings"
 
         self.versementliste.pack(fill=BOTH, expand=1)

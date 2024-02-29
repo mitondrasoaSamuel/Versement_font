@@ -5,6 +5,7 @@ class API:
     VERSEMENT_URL =  API + "versement"
     USER_LOGIN = API + "login"
     USER_REGISTER =  API + "register"
+    AUDIT_URL = API + "audit/total"
 
     TOKEN = "1|Alquur2FPriNJ7mPrXxNSzswP4yDGGXRHBYKr4Jbc3d7af61"
     HEADER = {"Authorization" : f"Bearer {TOKEN}"}
