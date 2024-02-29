@@ -2,8 +2,13 @@ import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 from configAPI import API
+import requests as req
 
 class VersementFrame:
+    
+
+
+
     def __init__(self, frame):
 
          ###### Contenu
@@ -65,7 +70,6 @@ class VersementFrame:
         self.versementliste.heading("num_compte", text="N° Compte")
         self.versementliste.heading("num_cheque", text="N° Chèque")
         self.versementliste.heading("montant", text="Montant")
-
 
         self.versementliste["show"]="headings"
 
