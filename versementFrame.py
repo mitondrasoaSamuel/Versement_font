@@ -4,14 +4,24 @@ from tkinter import ttk
 from configAPI import API
 import requests as req
 from tkinter import messagebox
+import random
 
 class VersementFrame:
     
-#     def reset_versement(self):
-#         self.entre_versement.config(state="normal")
-#         self.entre_compte.insert(0, self.generer_numero_compte()) 
-#         self.entre_cheque.delete(0, tk.END)
-#         self.entre_montant.delete(0, tk.END)
+    def generer_numero_compte(self):
+        numero_compte = ''.join([str(random.randint(1, 9)) for _ in range(8)])  # Vous pouvez ajuster la longueur du numéro de compte si nécessaire
+        return numero_compte
+    
+    
+    def reset_versement(self):
+        self.entre_versement.config(state="normal")
+        self.entre_compte.insert(0, self.generer_numero_compte()) 
+        self.entre_cheque.delete(0, tk.END)
+        self.entre_montant.delete(0, tk.END)
+
+    def fetch_clients(self):
+        return req.get(API.CLIENT_URL, headers=API.HEADER).json()
+        
     
     ### Recuperer liste des clients 
     def fetch_versement(self):
@@ -32,7 +42,7 @@ class VersementFrame:
 #             'montant': float(self.entre_montant.get())
 #         }
 
-#         res = req.post(API.CLIENT_URL, dataVersement,headers=self.HEADER).json()
+#         res = req.post(API.CLIENT_URL, dataVersement,headers=API.HEADER).json()
 
 #         if(res):
 #             self.fetch_versement()
@@ -41,6 +51,30 @@ class VersementFrame:
 #         else:
 #             messagebox.showerror("AJOUT VERSEMENT", "Erreur de l'ajout")
     
+    def add_versement(self):
+        selected_num_value = self.selected_num_compte.get() 
+        selected_id = None
+        
+        for account in self.fetch_clients():
+            if account["num_compte"] == selected_num_value:
+                selected_id = account["id"]
+                break
+        
+        if selected_id is not None:
+            dataVersement = {
+                "num_versement": self.entre_versement.get(),
+                "num_cheque": self.entre_cheque.get(),
+                "client_id": int(selected_id), ## client  
+                "montant": float(self.entre_montant.get())
+            }
+            res = req.post(API.CLIENT_URL, dataVersement,headers=API.HEADER).json()
+
+            if(res):
+                self.fetch_versement()
+                self.reset_versement()
+                messagebox.showinfo("AJOUT VERSEMENT", "Ajoute avec succes")
+            else:
+                messagebox.showerror("AJOUT VERSEMENT", "Erreur de l'ajout")
 
 
     def __init__(self, frame):
@@ -55,13 +89,26 @@ class VersementFrame:
         
 
         # Num_compte
-        lbl_num_compte = Label(frame, text="N° Compte :", font=("Arial", 14), bg="white").place(x=50, y=85)
+        # lbl_num_compte = Label(frame, text="N° Compte :", font=("Arial", 14), bg="white").place(x=50, y=85)
+
+                # Num_compte
+        clients = self.fetch_clients()
+        num_comptes = [account["num_compte"] for account in clients]
+        
+        lbl_num_compte = Label(frame, text="N° Compte :", font=("goudy old style", 10), bg="white").place(x=50, y=85)
+        # entre_compte =  Entry(frame, font=("goudy old style", 10), bg="lightyellow")    
+        # entre_compte.place(x=250, y=320, width=250)
+        self.selected_num_compte = tk.StringVar(frame)
+        self.selected_num_compte.set(num_comptes[0])  # Set the default selected num_compte
+            
+        option_menu = tk.OptionMenu(frame, self.selected_num_compte, *num_comptes)
+        option_menu.place(x=250, y=85, width=250)
 
         # clients = API.get_clients()
         # num_comptes = [account["num_compte"] for account in clients]
 
-        self.entre_compte =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
-        self.entre_compte.place(x=250, y=85, width=250)
+        # self.entre_compte =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
+        # self.entre_compte.place(x=250, y=85, width=250)
                
 
                 # Num_cheque
@@ -85,7 +132,7 @@ class VersementFrame:
                 ## Ajouter
         
         self.ajout_btn = Button(frame, text="Ajouter", font=("times new roman", 20, "bold"), cursor="hand2", bg="green", state="normal"
-                                # , command=self.add_versement
+                                , command=self.add_versement
                                 )
         self.ajout_btn.place(x=330, y=150, height=40, width=150)
 

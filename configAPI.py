@@ -7,7 +7,7 @@ class API:
     USER_URL = API + "user"
     USER_LOGIN = API + "login"
     USER_REGISTER =  API + "register"
-    AUDIT_URL = API + "audit/total"
+    AUDIT_URL_TOTAL = API + "audit/total"
 
     TOKEN = "1|Alquur2FPriNJ7mPrXxNSzswP4yDGGXRHBYKr4Jbc3d7af61"
     HEADER = {"Authorization" : f"Bearer {TOKEN}"}
