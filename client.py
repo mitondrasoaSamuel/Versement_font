@@ -66,7 +66,7 @@ class Client:
         }
 
         res = req.put(API.CLIENT_URL+"/"+str(self.get_client_id()), dataClient,headers=self.HEADER).json()
-
+    
         if(res):
             messagebox.showinfo("MODIFICATION CLIENT", "Modification avec succes")
             self.fetch_client()
