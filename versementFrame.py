@@ -15,7 +15,7 @@ class VersementFrame:
     
     def reset_versement(self):
         self.entre_versement.config(state="normal")
-        self.entre_compte.insert(0, self.generer_numero_compte()) 
+        self.entre_versement.insert(0, self.generer_numero_compte()) 
         self.entre_cheque.delete(0, tk.END)
         self.entre_montant.delete(0, tk.END)
 
@@ -32,25 +32,8 @@ class VersementFrame:
            self.versementliste.delete(row)
         
         for item in data: 
-           self.versementliste.insert('', 'end', values=(item['num_versement'], item['num_cheque'], item['client_id'], item['montant']))
-
-#     def add_versement(self):
-#         dataVersement = {
-#             'num_versement': self.entre_versement.get(),
-#             'num_cheque': self.entre_cheque.get(),
-#             'client_id': self.entre_compte.get(),
-#             'montant': float(self.entre_montant.get())
-#         }
-
-#         res = req.post(API.CLIENT_URL, dataVersement,headers=API.HEADER).json()
-
-#         if(res):
-#             self.fetch_versement()
-#             self.reset_versement()
-#             messagebox.showinfo("AJOUT VERSEMENT", "Ajoute avec succes")
-#         else:
-#             messagebox.showerror("AJOUT VERSEMENT", "Erreur de l'ajout")
-    
+           self.versementliste.insert('', 'end', values=(item['num_versement'], item['client']['num_compte'], item['num_cheque'], item['montant']))
+   
     def add_versement(self):
         selected_num_value = self.selected_num_compte.get() 
         selected_id = None
@@ -67,14 +50,15 @@ class VersementFrame:
                 "client_id": int(selected_id), ## client  
                 "montant": float(self.entre_montant.get())
             }
-            res = req.post(API.CLIENT_URL, dataVersement,headers=API.HEADER).json()
+            
+            res = req.post(API.VERSEMENT_URL, dataVersement, headers=API.HEADER)
 
             if(res):
                 self.fetch_versement()
                 self.reset_versement()
                 messagebox.showinfo("AJOUT VERSEMENT", "Ajoute avec succes")
             else:
-                messagebox.showerror("AJOUT VERSEMENT", "Erreur de l'ajout")
+                messagebox.showerror("AJOUT VERSEMENT", "Erreur de l'ajout: "+str(res["message"]))
 
 
     def __init__(self, frame):
@@ -85,12 +69,10 @@ class VersementFrame:
         lbl_num_versement = Label(frame, text="N° Versement :", font=("Arial", 14), bg="white").place(x=50, y=25)
 
         self.entre_versement =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
+        self.entre_versement.insert(0, self.generer_numero_compte())  # Insérer le numéro de compte aléatoire
+        self.entre_versement.config(state="readonly")
         self.entre_versement.place(x=250, y=25, width=250)
         
-
-        # Num_compte
-        # lbl_num_compte = Label(frame, text="N° Compte :", font=("Arial", 14), bg="white").place(x=50, y=85)
-
                 # Num_compte
         clients = self.fetch_clients()
         num_comptes = [account["num_compte"] for account in clients]
@@ -104,12 +86,6 @@ class VersementFrame:
         option_menu = tk.OptionMenu(frame, self.selected_num_compte, *num_comptes)
         option_menu.place(x=250, y=85, width=250)
 
-        # clients = API.get_clients()
-        # num_comptes = [account["num_compte"] for account in clients]
-
-        # self.entre_compte =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
-        # self.entre_compte.place(x=250, y=85, width=250)
-               
 
                 # Num_cheque
         lbl_num_cheque = Label(frame, text="N° Chèque :", font=("Arial", 14), bg="white").place(x=900, y=25)
