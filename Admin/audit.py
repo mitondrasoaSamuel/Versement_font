@@ -72,16 +72,16 @@ class Audit:
 
 
 
-        self.audit_liste = ttk.Treeview(listeFrame , columns=("num_compte", "nom_client", "mail_client", "action", "num_versement", "montant_ancien", "montant_nouveau", "date_operation"), yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set)
+        self.audit_liste = ttk.Treeview(listeFrame , columns=("action", "date_operation", "num_versement", "num_compte", "nom_client", "montant_ancien", "montant_nouveau", "mail_client"), yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set)
 
         scroll_x.config(command=self.audit_liste.xview)
         scroll_y.config(command=self.audit_liste.yview)
         
         self.audit_liste.heading("num_compte", text="N° Compte")
-        self.audit_liste.heading("nom_client", text="Nom")
-        self.audit_liste.heading("mail_client", text="Email")
-        self.audit_liste.heading("action", text="Action")
-        self.audit_liste.heading("num_versement", text="N° Versment")
+        self.audit_liste.heading("nom_client", text="Client")
+        self.audit_liste.heading("mail_client", text="Utilisateur")
+        self.audit_liste.heading("action", text="Type Action")
+        self.audit_liste.heading("num_versement", text="N° Versement")
         self.audit_liste.heading("montant_ancien", text="Montant ancien")
         self.audit_liste.heading("montant_nouveau", text="Montant nouveau")   
         self.audit_liste.heading("date_operation", text="Date operation")
