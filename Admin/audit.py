@@ -56,7 +56,7 @@ class Audit:
             ##### Liste Client
                   #3 Creation  de frame
         listeFrame = Frame(frame, bd=3, relief=RIDGE)
-        listeFrame.place(x=180, y=130, height=650, width=1080)
+        listeFrame.place(x=100, y=10, height=400, width=1000)
 
 
         

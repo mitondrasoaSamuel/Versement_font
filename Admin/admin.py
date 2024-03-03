@@ -15,9 +15,9 @@ class admin:
     def __init__(self, root):
         self.root = root 
         self.root.title("Administrateur")
-        self.root.geometry("1400x1000")
+        self.root.geometry("1300x650")
         self.root.config(bg="#f1f1fc")
-        self.root.resizable(False, False)
+        # self.root.resizable(False, False)
 
         ### Fonction Menu
         def switch(indicator_lb, page):
