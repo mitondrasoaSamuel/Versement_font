@@ -46,17 +46,17 @@ class Utilisateur:
           ###### Contenu
                 # Nom
 
-        lbl_nom = Label(frame, text="Pseudo :", font=("Arial", 14)).place(x=100, y=25)
+        lbl_nom = Label(frame, text="Pseudo :", font=("Arial", 14)).place(x=200, y=25)
 
         self.entre_nom =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
-        self.entre_nom.place(x=200, y=25, width=250)
+        self.entre_nom.place(x=300, y=25, width=250)
         
 
         # Mail
-        lbl_mail = Label(frame, text="Email :", font=("Arial", 14)).place(x=100, y=60)
+        lbl_mail = Label(frame, text="Email :", font=("Arial", 14)).place(x=200, y=60)
 
         self.entre_email =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
-        self.entre_email.place(x=200, y=60, width=250)
+        self.entre_email.place(x=300, y=60, width=250)
                
 
                 # Mot de passe
@@ -81,7 +81,7 @@ class Utilisateur:
              ##### Liste Utilisateur
                     #3 Creation  de frame
         listeFrame = Frame(frame, bd=3, relief=RIDGE)
-        listeFrame.place(x=80, y=120, height=450, width=1100)
+        listeFrame.place(x=80, y=120, height=400, width=1100)
 
         scroll_x = Scrollbar(listeFrame, orient=VERTICAL)
         scroll_x.pack(side=RIGHT, fill=Y)

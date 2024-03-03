@@ -84,9 +84,9 @@ class Audit:
 
         total = self.get_total()
 
-        lbl_ajout= Label(frame, text="TOTAL AJOUT : " + str(total["add"]))
-        lbl_ajout.place(x=180, y=480)
-        lbl_modif = Label(frame, text="TOTAL MODIFICATION : " + str(total["edit"]))
-        lbl_modif.place(x=350, y=480)
-        lbl_suppr = Label(frame, text="TOTAL SUPPRESSION : " + str(total["delete"]))
-        lbl_suppr.place(x=550, y=480)
+        lbl_ajout= Label(frame, text="TOTAL AJOUT : " + str(total["add"]), font=("Arial", 12, "bold"))
+        lbl_ajout.place(x=100, y=480)
+        lbl_modif = Label(frame, text="TOTAL MODIFICATION : " + str(total["edit"]), font=("Arial", 12, "bold"))
+        lbl_modif.place(x=500, y=480)
+        lbl_suppr = Label(frame, text="TOTAL SUPPRESSION : " + str(total["delete"]), font=("Arial", 12, "bold"))
+        lbl_suppr.place(x=900, y=480)

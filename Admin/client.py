@@ -52,12 +52,12 @@ class Client:
 
         ### Bouton Modifier
 
-        self.modifier_btn = Button(frame, text="Modifier", font=("Arial", 20, "bold"), cursor="hand2", bg="green", state="normal")
+        self.modifier_btn = Button(frame, text="Modifier", font=("Arial", 14, "bold"), cursor="hand2", bg="green", state="normal")
         self.modifier_btn.place(x=500, y=810, height=40, width=150)
 
         ### Bouton Supprimer
 
-        self.supprimer_btn = Button(frame, text="Supprimer", font=("Arial", 20, "bold"), cursor="hand2", bg="#de3232", state="normal")
+        self.supprimer_btn = Button(frame, text="Supprimer", font=("Arial", 14, "bold"), cursor="hand2", bg="#de3232", state="normal")
         self.supprimer_btn.place(x=800, y=810, height=40, width=150)
 
         
