@@ -16,7 +16,6 @@ class Client:
         self.entre_nom_client.delete(0, tk.END)
         self.entre_prenoms_client.delete(0, tk.END)
         self.entre_solde.delete(0, tk.END)
-        self.show_buttons()
     
     ### Recuperer liste des clients 
     def fetch_client(self):
@@ -72,6 +71,7 @@ class Client:
             messagebox.showinfo("MODIFICATION CLIENT", "Modification avec succes")
             self.fetch_client()
             self.reset_client()
+            self.show_buttons()
 
         else:
             messagebox.showerror("MODIFICATION CLIENT", "Erreur de modification")
@@ -111,10 +111,10 @@ class Client:
         self.hide_buttons()
 
     def show_buttons(self):
-        self.ajout_btn.place(x=330, y=150, height=40, width=150)
-        self.reinitialiser_btn.place(x=1000, y=150, height=40, width=160)
         self.supprimer_btn.place_forget()
         self.modifier_btn.place_forget()
+        self.ajout_btn.place(x=330, y=150, height=40, width=150)
+        self.reinitialiser_btn.place(x=1000, y=150, height=40, width=160)
     
     def hide_buttons(self):
         self.ajout_btn.place_forget()
@@ -166,14 +166,14 @@ class Client:
                 ## Supprimer
         
         self.supprimer_btn = Button(frame, text="Supprimer", font=("times new roman", 14, "bold"), cursor="hand2", bg="red", state="normal", command=self.delete_client)
-        self.supprimer_btn.place(x=540, y=110, height=40, width=150)
+        # self.supprimer_btn.place(x=540, y=110, height=40, width=150)
 
 
         ###  Bouton 
                 ## Modifier
         
         self.modifier_btn = Button(frame, text="Modifier", font=("times new roman", 14, "bold"), cursor="hand2", bg="gray", state="normal", command=self.update_client)
-        self.modifier_btn.place(x=740, y=110, height=40, width=150)
+        # self.modifier_btn.place(x=740, y=110, height=40, width=150)
 
 
         ###  Bouton 
