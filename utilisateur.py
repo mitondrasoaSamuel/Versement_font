@@ -14,8 +14,8 @@ class utilisateur:
     def __init__(self, root):
         self.root = root 
         self.root.title("Utilisateur")
-        self.root.geometry("1400x1000")
-        self.root.config(bg="#f1f1fc")
+        self.root.geometry("1400x850")
+        self.root.config(bg="#f2eeee")
         self.root.resizable(False, False)
 
         ### Fonction Menu
@@ -25,7 +25,7 @@ class utilisateur:
                 if isinstance(child, tk.Label):
                     child['bg'] = 'SystemButtonFace'
 
-            indicator_lb['bg'] = "#1c1b1b"
+            indicator_lb['bg'] = "#57a1f8"
 
             for fm in main_fm.winfo_children():
                 fm.destroy()
@@ -34,12 +34,12 @@ class utilisateur:
             page()
 
         ### Frame 
-        options_fm = tk.Frame(self.root, bd=2)
+        options_fm = tk.Frame(self.root, bd=2, bg="#f2eeee")
             ### Menu Accueil
         accueil_btn = tk.Button(options_fm, text="ACCUEIL", font=("Arial", 14, "bold"), bd=0, fg="#1c1b1b", activeforeground="#0097e8", command=lambda: switch(indicator_lb=accueil_indicator_lb, page=accueil_page))
         accueil_btn.place(x=0, y=0, width=330, height=70)   
                     ## indicateur
-        accueil_indicator_lb = tk.Label(options_fm, bg="#1c1b1b")
+        accueil_indicator_lb = tk.Label(options_fm, bg="#57a1f8")
         accueil_indicator_lb.place(x=2, y=70, width=330, height=5)
 
 

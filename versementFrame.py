@@ -132,23 +132,23 @@ class VersementFrame:
         ###### Contenu
         # Versement
 
-        lbl_num_versement = Label(frame, text="N° Versement :", font=("Arial", 14)).place(x=50, y=25)
+        lbl_num_versement = Label(frame, text="N° Versement :", font=("Arial", 14)).place(x=170, y=25)
 
         self.entre_versement =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
         self.entre_versement.insert(0, self.generer_numero_compte())  # Insérer le numéro de compte aléatoire
         self.entre_versement.config(state="readonly")
-        self.entre_versement.place(x=250, y=25, width=250)
+        self.entre_versement.place(x=310, y=25, width=250)
         
                 # Num_compte
         clients = self.fetch_clients()
         num_comptes = [account["num_compte"] for account in clients]
         
-        lbl_num_compte = Label(frame, text="N° Compte :", font=("goudy old style", 10)).place(x=50, y=85)
+        lbl_num_compte = Label(frame, text="N° Compte :", font=("Arial", 14)).place(x=170, y=65)
         self.selected_num_compte = tk.StringVar(frame)
         self.selected_num_compte.set(num_comptes[0])  # Set the default selected num_compte
             
         option_menu = tk.OptionMenu(frame, self.selected_num_compte, *num_comptes)
-        option_menu.place(x=250, y=85, width=250)
+        option_menu.place(x=310, y=65, width=250)
 
 
                 # Num_cheque
@@ -157,10 +157,10 @@ class VersementFrame:
         self.entre_cheque.place(x=1020, y=25, width=250)
         
                 # Montant
-        lbl_montant = Label(frame, text="Montant :", font=("Arial", 14)).place(x=928, y=85)
+        lbl_montant = Label(frame, text="Montant :", font=("Arial", 14)).place(x=928, y=65)
 
         self.entre_montant =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
-        self.entre_montant.place(x=1020, y=85, width=250)
+        self.entre_montant.place(x=1020, y=65, width=250)
 
         ###  Bouton
 
@@ -168,42 +168,42 @@ class VersementFrame:
         # img = ImageTk.PhotImage(Image.open("")) 
                 ## Ajouter
         
-        self.ajout_btn = Button(frame, text="Ajouter", font=("times new roman", 20, "bold"), cursor="hand2", bg="green", state="normal"
+        self.ajout_btn = Button(frame, text="Ajouter", font=("times new roman", 14, "bold"), cursor="hand2", bg="green", state="normal"
                                 , command=self.add_versement
                                 )
-        self.ajout_btn.place(x=330, y=150, height=40, width=150)
+        self.ajout_btn.place(x=360, y=110, height=40, width=150)
 
                 ###  Bouton 
                 ## Supprimer
         
-        self.supprimer_btn = Button(frame, text="Supprimer", font=("times new roman", 20, "bold"), cursor="hand2", bg="red", state="normal"
+        self.supprimer_btn = Button(frame, text="Supprimer", font=("times new roman", 14, "bold"), cursor="hand2", bg="red", state="normal"
                                     , command=self.delete_versement
                                     )
-        self.supprimer_btn.place(x=630, y=150, height=40, width=150)
+        self.supprimer_btn.place(x=540, y=110, height=40, width=150)
 
 
         ###  Bouton 
                 ## Modifier
         
-        self.modifier_btn = Button(frame, text="Modifier", font=("times new roman", 20, "bold"), cursor="hand2", bg="gray", state="normal"
+        self.modifier_btn = Button(frame, text="Modifier", font=("times new roman", 14, "bold"), cursor="hand2", bg="gray", state="normal"
                                    , command=self.update_versement
                                    )
-        self.modifier_btn.place(x=830, y=150, height=40, width=150)
+        self.modifier_btn.place(x=740, y=110, height=40, width=150)
 
 
         ###  Bouton 
                 ## Reinitialiser
         
-        self.reinitialiser_btn = Button(frame, text="Reinitialiser", font=("times new roman", 20, "bold"), cursor="hand2", state="normal"
+        self.reinitialiser_btn = Button(frame, text="Reinitialiser", font=("times new roman", 14, "bold"), cursor="hand2", state="normal"
                                         , command=self.reset_versement
                                         )
-        self.reinitialiser_btn.place(x=1000, y=150, height=40, width=160)
+        self.reinitialiser_btn.place(x=930, y=110, height=40, width=160)
 
 
              ##### Liste Versement
                     #3 Creation  de frame
         listeFrame = Frame(frame, bd=3, relief=RIDGE)
-        listeFrame.place(x=180, y=220, height=650, width=1080)
+        listeFrame.place(x=180, y=170, height=500, width=1080)
 
         scroll_x = Scrollbar(listeFrame, orient=VERTICAL)
         scroll_x.pack(side=RIGHT, fill=Y)
