@@ -132,7 +132,7 @@ class VersementFrame:
          ###### Contenu
                 # Versement
 
-        lbl_num_versement = Label(frame, text="N° Versement :", font=("Arial", 14), bg="white").place(x=50, y=25)
+        lbl_num_versement = Label(frame, text="N° Versement :", font=("Arial", 14)).place(x=50, y=25)
 
         self.entre_versement =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
         self.entre_versement.insert(0, self.generer_numero_compte())  # Insérer le numéro de compte aléatoire
@@ -143,7 +143,7 @@ class VersementFrame:
         clients = self.fetch_clients()
         num_comptes = [account["num_compte"] for account in clients]
         
-        lbl_num_compte = Label(frame, text="N° Compte :", font=("goudy old style", 10), bg="white").place(x=50, y=85)
+        lbl_num_compte = Label(frame, text="N° Compte :", font=("goudy old style", 10)).place(x=50, y=85)
         self.selected_num_compte = tk.StringVar(frame)
         self.selected_num_compte.set(num_comptes[0])  # Set the default selected num_compte
             
@@ -152,12 +152,12 @@ class VersementFrame:
 
 
                 # Num_cheque
-        lbl_num_cheque = Label(frame, text="N° Chèque :", font=("Arial", 14), bg="white").place(x=900, y=25)
+        lbl_num_cheque = Label(frame, text="N° Chèque :", font=("Arial", 14)).place(x=900, y=25)
         self.entre_cheque =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
         self.entre_cheque.place(x=1020, y=25, width=250)
         
                 # Montant
-        lbl_montant = Label(frame, text="Montant :", font=("Arial", 14), bg="white").place(x=928, y=85)
+        lbl_montant = Label(frame, text="Montant :", font=("Arial", 14)).place(x=928, y=85)
 
         self.entre_montant =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
         self.entre_montant.place(x=1020, y=85, width=250)
@@ -194,7 +194,7 @@ class VersementFrame:
         ###  Bouton 
                 ## Reinitialiser
         
-        self.reinitialiser_btn = Button(frame, text="Reinitialiser", font=("times new roman", 20, "bold"), cursor="hand2", bg="white", state="normal"
+        self.reinitialiser_btn = Button(frame, text="Reinitialiser", font=("times new roman", 20, "bold"), cursor="hand2", state="normal"
                                         , command=self.reset_versement
                                         )
         self.reinitialiser_btn.place(x=1000, y=150, height=40, width=160)

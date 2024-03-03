@@ -36,7 +36,7 @@ class utilisateur:
         ### Frame 
         options_fm = tk.Frame(self.root, bd=2)
             ### Menu Accueil
-        accueil_btn = tk.Button(options_fm, text="Accueil", font=("Arial", 20, "bold"), bd=0, fg="#1c1b1b", activeforeground="#0097e8", command=lambda: switch(indicator_lb=accueil_indicator_lb, page=accueil_page))
+        accueil_btn = tk.Button(options_fm, text="ACCUEIL", font=("Arial", 14, "bold"), bd=0, fg="#1c1b1b", activeforeground="#0097e8", command=lambda: switch(indicator_lb=accueil_indicator_lb, page=accueil_page))
         accueil_btn.place(x=0, y=0, width=330, height=70)   
                     ## indicateur
         accueil_indicator_lb = tk.Label(options_fm, bg="#1c1b1b")
@@ -45,7 +45,7 @@ class utilisateur:
 
 
             ### Menu Versement
-        versement_btn = tk.Button(options_fm, text="Versement", font=("Arial", 20, "bold"), bd=0, fg="#1c1b1b", activeforeground="#0097e8", command=lambda: switch(indicator_lb=versement_indicator_lb, page=versement_page))
+        versement_btn = tk.Button(options_fm, text="VERSEMENT", font=("Arial", 14, "bold"), bd=0, fg="#1c1b1b", activeforeground="#0097e8", command=lambda: switch(indicator_lb=versement_indicator_lb, page=versement_page))
         versement_btn.place(x=350, y=0, width=330, height=70) 
                     ### indicateur
         versement_indicator_lb = tk.Label(options_fm)
@@ -54,7 +54,7 @@ class utilisateur:
 
 
             ### Menu Client
-        client_btn = tk.Button(options_fm, text="Client", font=("Arial", 20, "bold"), bd=0, fg="#1c1b1b", activeforeground="#0097e8", command=lambda: switch(indicator_lb=client_indicator_lb,page=client_page))
+        client_btn = tk.Button(options_fm, text="CLIENT", font=("Arial", 14, "bold"), bd=0, fg="#1c1b1b", activeforeground="#0097e8", command=lambda: switch(indicator_lb=client_indicator_lb,page=client_page))
         client_btn.place(x=700, y=0, width=330, height=70)     
 
                         ### client
