@@ -121,9 +121,6 @@ class Audit:
         self.display_graph = Button(frame, text="Afficher Graphe", font=("Arial", 14, "bold"), cursor="hand2", bg="gray", state="normal", command=lambda: self.toggle_graph(frame))
         self.display_graph.place(x=80, y=480, height=40, width=180)
         
-        # self.hide_graph = Button(frame, text="Cacher", font=("Arial", 14, "bold"), cursor="hand2", bg="gray", state="normal", command=lambda: self.plot_pie_chart(frame))
-        # self.hide_graph.place(x=100, y=480, height=40, width=150)
-        
         total = self.get_total()
         lbl_ajout= Label(frame, text="TOTAL AJOUT : " + str(total["add"]), font=("Arial", 12, "bold"))
         lbl_ajout.place(x=350, y=490)

@@ -129,8 +129,8 @@ class VersementFrame:
         
     def __init__(self, frame):
 
-         ###### Contenu
-                # Versement
+        ###### Contenu
+        # Versement
 
         lbl_num_versement = Label(frame, text="N° Versement :", font=("Arial", 14)).place(x=50, y=25)
 
