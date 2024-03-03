@@ -9,13 +9,14 @@ from tkinter import messagebox
 class Client:
     ### Gerer utilisateur connecte 
     HEADER = API.HEADER
-
+    
     def reset_client(self):
         self.entre_compte.config(state="normal")
         self.entre_compte.insert(0, self.generer_numero_compte()) 
         self.entre_nom_client.delete(0, tk.END)
         self.entre_prenoms_client.delete(0, tk.END)
         self.entre_solde.delete(0, tk.END)
+        self.show_buttons()
     
     ### Recuperer liste des clients 
     def fetch_client(self):
@@ -64,9 +65,9 @@ class Client:
             'prenoms': self.entre_prenoms_client.get(),
             'solde': float(self.entre_solde.get())
         }
-
+        
         res = req.put(API.CLIENT_URL+"/"+str(self.get_client_id()), dataClient,headers=self.HEADER).json()
-    
+
         if(res):
             messagebox.showinfo("MODIFICATION CLIENT", "Modification avec succes")
             self.fetch_client()
@@ -74,7 +75,7 @@ class Client:
 
         else:
             messagebox.showerror("MODIFICATION CLIENT", "Erreur de modification")
-    
+        
     def delete_client(self):
         res = req.delete(API.CLIENT_URL+"/"+str(self.get_client_id()), headers=self.HEADER).json()
 
@@ -85,6 +86,7 @@ class Client:
 
         else:
             messagebox.showerror("SUPPRESSION CLIENT", "Erreur de suppression")
+        
 
     def generer_numero_compte(self):
         numero_compte = ''.join([str(random.randint(1, 9)) for _ in range(8)])  # Vous pouvez ajuster la longueur du numéro de compte si nécessaire
@@ -106,7 +108,20 @@ class Client:
             self.entre_solde.insert(0, item["values"][3])
         
         self.entre_compte.config(state="readonly")
+        self.hide_buttons()
 
+    def show_buttons(self):
+        self.ajout_btn.place(x=330, y=150, height=40, width=150)
+        self.reinitialiser_btn.place(x=1000, y=150, height=40, width=160)
+        self.supprimer_btn.place_forget()
+        self.modifier_btn.place_forget()
+    
+    def hide_buttons(self):
+        self.ajout_btn.place_forget()
+        self.reinitialiser_btn.place_forget()
+        self.supprimer_btn.place(x=330, y=150, height=40, width=150)
+        self.modifier_btn.place(x=1000, y=150, height=40, width=160)
+       
     def __init__(self, frame):
 
         ###### Contenu
@@ -146,29 +161,27 @@ class Client:
         self.ajout_btn = Button(frame, text="Ajouter", font=("times new roman", 20, "bold"), cursor="hand2", bg="green", state="normal", command=self.add_client)
         self.ajout_btn.place(x=330, y=150, height=40, width=150)
 
-
         ###  Bouton 
                 ## Supprimer
         
         self.supprimer_btn = Button(frame, text="Supprimer", font=("times new roman", 20, "bold"), cursor="hand2", bg="red", state="normal", command=self.delete_client)
-        self.supprimer_btn.place(x=630, y=150, height=40, width=150)
-
+        # self.supprimer_btn.place(x=630, y=150, height=40, width=150)
 
         ###  Bouton 
                 ## Modifier
         
         self.modifier_btn = Button(frame, text="Modifier", font=("times new roman", 20, "bold"), cursor="hand2", bg="gray", state="normal", command=self.update_client)
-        self.modifier_btn.place(x=830, y=150, height=40, width=150)
+        # self.modifier_btn.place(x=830, y=150, height=40, width=150)
 
 
         ###  Bouton 
                 ## Reinitialiser
         
-        self.reinitialiser_btn = Button(frame, text="Rieinitialiser", font=("times new roman", 20, "bold"), cursor="hand2", state="normal", command=self.reset_client)
+        self.reinitialiser_btn = Button(frame, text="Reinitialiser", font=("times new roman", 20, "bold"), cursor="hand2", state="normal", command=self.reset_client)
         self.reinitialiser_btn.place(x=1000, y=150, height=40, width=160)
-
-             ##### Liste Versement
-                    #3 Creation  de frame
+      
+        ##### Liste Versement
+        #3 Creation  de frame
         listeFrame = Frame(frame, bd=3, relief=RIDGE)
         listeFrame.place(x=180, y=200, height=650, width=1080)
 
