@@ -25,13 +25,11 @@ class Client:
            self.versementliste.insert('', 'end', values=(item['num_compte'], item['nom'], item['prenoms'], item['solde']))
 
     def __init__(self, frame):
-        titre = Label(frame, text="LISTE DES CLIENTS", font=("Arial", 40, "bold"), bg="#C0C0C0").place(x=0, y=0, relwidth=1, height=100)
-
-
-             ##### Liste Client
-                    #3 Creation  de frame
+        # titre = Label(frame, text="LISTE DES CLIENTS", font=("Arial", 40, "bold"), bg="#C0C0C0").place(x=0, y=0, relwidth=1, height=100)
+        ##### Liste Client
+        #3 Creation  de frame
         listeFrame = Frame(frame, bd=3, relief=RIDGE)
-        listeFrame.place(x=180, y=130, height=650, width=1080)
+        listeFrame.place(x=80, y=10, height=450, width=1100)
 
         scroll_x = Scrollbar(listeFrame, orient=VERTICAL)
         scroll_x.pack(side=RIGHT, fill=Y)
@@ -52,5 +50,14 @@ class Client:
         self.versementliste.pack(fill=BOTH, expand=1)
 
 
-        
+        ### Bouton Modifier
+
+        self.modifier_btn = Button(frame, text="Modifier", font=("Arial", 14, "bold"), cursor="hand2", bg="green", state="normal")
+        self.modifier_btn.place(x=500, y=810, height=40, width=150)
+
+        ### Bouton Supprimer
+
+        self.supprimer_btn = Button(frame, text="Supprimer", font=("Arial", 14, "bold"), cursor="hand2", bg="#de3232", state="normal")
+        self.supprimer_btn.place(x=800, y=810, height=40, width=150)
+
         

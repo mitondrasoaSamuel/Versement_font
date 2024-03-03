@@ -109,10 +109,10 @@ class Client:
 
     def __init__(self, frame):
 
-         ###### Contenu
-                # Nom Client
+        ###### Contenu
+        # Nom Client
         
-        lbl_nom_client = Label(frame, text="Nom :", font=("Arial", 14), bg="white").place(x=50, y=25)
+        lbl_nom_client = Label(frame, text="Nom :", font=("Arial", 14)).place(x=50, y=25)
 
         self.entre_nom_client =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
         self.entre_nom_client.place(x=180, y=25, width=250)
@@ -131,14 +131,14 @@ class Client:
 
 
                 ## Prenom
-        lbl_prenom_client = Label(frame, text="Prenom  :", font=("Arial", 14), bg="white").place(x=50, y=85)
+        lbl_prenom_client = Label(frame, text="Prenom  :", font=("Arial", 14)).place(x=50, y=85)
 
         self.entre_prenoms_client =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
         self.entre_prenoms_client.place(x=250, y=85, width=250)
         
 
         # Num_compte
-        lbl_num_compte = Label(frame, text="N° Compte :", font=("Arial", 14), bg="white").place(x=880, y=25)
+        lbl_num_compte = Label(frame, text="N° Compte :", font=("Arial", 14)).place(x=880, y=25)
 
         self.entre_compte =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
         self.entre_compte.insert(0, self.generer_numero_compte())  # Insérer le numéro de compte aléatoire
@@ -147,7 +147,7 @@ class Client:
                
 
                 # solde
-        lbl_solde = Label(frame, text="Solde :", font=("Arial", 14), bg="white").place(x=880, y=85)
+        lbl_solde = Label(frame, text="Solde :", font=("Arial", 14)).place(x=880, y=85)
 
         self.entre_solde =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
         self.entre_solde.place(x=1000, y=85, width=250)
@@ -177,7 +177,7 @@ class Client:
         ###  Bouton 
                 ## Reinitialiser
         
-        self.reinitialiser_btn = Button(frame, text="Rieinitialiser", font=("times new roman", 20, "bold"), cursor="hand2", bg="white", state="normal", command=self.reset_client)
+        self.reinitialiser_btn = Button(frame, text="Rieinitialiser", font=("times new roman", 20, "bold"), cursor="hand2", state="normal", command=self.reset_client)
         self.reinitialiser_btn.place(x=1000, y=150, height=40, width=160)
 
              ##### Liste Versement
