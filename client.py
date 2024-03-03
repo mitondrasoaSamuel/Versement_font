@@ -109,8 +109,8 @@ class Client:
 
     def __init__(self, frame):
 
-         ###### Contenu
-                # Nom Client
+        ###### Contenu
+        # Nom Client
         
         lbl_nom_client = Label(frame, text="Nom :", font=("Arial", 14)).place(x=50, y=25)
 
