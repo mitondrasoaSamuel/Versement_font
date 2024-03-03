@@ -39,7 +39,7 @@ class admin:
         options_fm = tk.Frame(self.root, bd=2, bg="#f1f1fc")
             #-------------------
                 ### Menu audit
-        audit_btn = tk.Button(options_fm, text="Audit Versement", font=("Arial", 20, "bold"), bd=0, fg="#1c1b1b", activeforeground="#0097e8"
+        audit_btn = tk.Button(options_fm, text="AUDIT VERSEMENT", font=("Arial", 16, "bold"), bd=0, fg="#1c1b1b", activeforeground="#0097e8"
                              , command=lambda: switch(indicator_lb=aucit_indicator_lb, page=audit_page)
                              )
         audit_btn.place(x=0, y=0, width=330, height=70)
@@ -48,11 +48,8 @@ class admin:
         aucit_indicator_lb = tk.Label(options_fm, bg="#1c1b1b")
         aucit_indicator_lb.place(x=2, y=70, width=330, height=5)
 
-
-
-
                 ### Menu client
-        client_btn = tk.Button(options_fm, text="Client", font=("Arial", 20, "bold"), bd=0, fg="#1c1b1b", activeforeground="#0097e8"
+        client_btn = tk.Button(options_fm, text="CLIENT", font=("Arial", 16, "bold"), bd=0, fg="#1c1b1b", activeforeground="#0097e8"
                                   , command=lambda: switch(indicator_lb=client_indicator_lb, page=client_page)
                                   )
         client_btn.place(x=350, y=0, width=330, height=70)
@@ -61,21 +58,15 @@ class admin:
         client_indicator_lb = tk.Label(options_fm)
         client_indicator_lb.place(x=352, y=70, width=330, height=5) 
 
-
-
                 ### Menu utilisateur
-        utilisateur_btn = tk.Button(options_fm, text="Utilisateur", font=("Arial", 20, "bold"), bd=0, fg="#1c1b1b"
+        utilisateur_btn = tk.Button(options_fm, text="UTILISATEUR", font=("Arial", 16, "bold"), bd=0, fg="#1c1b1b"
                                     , activeforeground="#0097e8", command=lambda: switch(indicator_lb=utilisateur_indicator_lb,page=utilisateur_page))
         utilisateur_btn.place(x=700, y=0, width=330, height=70)  
 
                 ### indicateur
         utilisateur_indicator_lb = tk.Label(options_fm)
         utilisateur_indicator_lb.place(x=702, y=70, width=330, height=5)  
-
-
-
-
-
+        
             #-------------------
         options_fm.pack(pady=5)
 

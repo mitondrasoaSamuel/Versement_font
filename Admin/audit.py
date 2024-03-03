@@ -56,21 +56,13 @@ class Audit:
             ##### Liste Client
                   #3 Creation  de frame
         listeFrame = Frame(frame, bd=3, relief=RIDGE)
-        listeFrame.place(x=100, y=10, height=400, width=1000)
+        listeFrame.place(x=80, y=10, height=450, width=1100)
 
-
-        
         scroll_x = Scrollbar(listeFrame, orient=HORIZONTAL)
         scroll_x.pack(side=BOTTOM, fill=X)
 
-
-
         scroll_y = Scrollbar(listeFrame, orient=VERTICAL)
         scroll_y.pack(side=RIGHT, fill=Y)
-
-
-
-
 
         self.audit_liste = ttk.Treeview(listeFrame , columns=("action", "date_operation", "num_versement", "num_compte", "nom_client", "montant_ancien", "montant_nouveau", "mail_client"), yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set)
 
@@ -85,10 +77,6 @@ class Audit:
         self.audit_liste.heading("montant_ancien", text="Montant ancien")
         self.audit_liste.heading("montant_nouveau", text="Montant nouveau")   
         self.audit_liste.heading("date_operation", text="Date operation")
-        
-        
-
-
         self.audit_liste["show"]="headings"
         self.fetch_audit()
         self.audit_liste.pack(fill=BOTH, expand=1)
@@ -97,8 +85,8 @@ class Audit:
         total = self.get_total()
 
         lbl_ajout= Label(frame, text="TOTAL AJOUT : " + str(total["add"]))
-        lbl_ajout.place(x=180, y=800)
+        lbl_ajout.place(x=180, y=480)
         lbl_modif = Label(frame, text="TOTAL MODIFICATION : " + str(total["edit"]))
-        lbl_modif.place(x=350, y=800)
+        lbl_modif.place(x=350, y=480)
         lbl_suppr = Label(frame, text="TOTAL SUPPRESSION : " + str(total["delete"]))
-        lbl_suppr.place(x=550, y=800)
+        lbl_suppr.place(x=550, y=480)

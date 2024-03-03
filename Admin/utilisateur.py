@@ -46,36 +46,42 @@ class Utilisateur:
           ###### Contenu
                 # Nom
 
-        lbl_nom = Label(frame, text="Pseudo :", font=("Arial", 14), bg="white").place(x=110, y=25)
+        lbl_nom = Label(frame, text="Pseudo :", font=("Arial", 14)).place(x=100, y=25)
 
         self.entre_nom =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
-        self.entre_nom.place(x=180, y=25, width=250)
+        self.entre_nom.place(x=200, y=25, width=250)
         
 
         # Mail
-        lbl_mail = Label(frame, text="Email :", font=("Arial", 14), bg="white").place(x=500, y=25)
+        lbl_mail = Label(frame, text="Email :", font=("Arial", 14)).place(x=100, y=60)
 
         self.entre_email =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
-        self.entre_email.place(x=580, y=25, width=250)
+        self.entre_email.place(x=200, y=60, width=250)
                
 
                 # Mot de passe
-        lbl_mdp = Label(frame, text="Mot de passe :", font=("Arial", 14), bg="white").place(x=900, y=25)
+        lbl_mdp = Label(frame, text="Mot de passe :", font=("Arial", 14)).place(x=600, y=25)
 
         self.entre_mdp =  Entry(frame, font=("Arial", 14), bg="lightyellow", show="*")    
-        self.entre_mdp.place(x=1040, y=25, width=250)
+        self.entre_mdp.place(x=750, y=25, width=250)
         
 
         ###  Bouton 
+         ###  Bouton 
                 ## Ajouter
         
-        self.ajout_btn = Button(frame, text="Ajouter", font=("times new roman", 20, "bold"), cursor="hand2", bg="green", state="normal", command=self.add_user)
-        self.ajout_btn.place(x=630, y=100, height=40, width=150)
+        self.reset_btn = Button(frame, text="Reinitialiser", font=("times new roman", 14, "bold"), cursor="hand2", bg="gray", state="normal", command=self.add_user)
+        self.reset_btn.place(x=600, y=60, height=35, width=150)
+        
+                ## Ajouter
+        
+        self.ajout_btn = Button(frame, text="Ajouter", font=("times new roman", 14, "bold"), cursor="hand2", bg="green", state="normal", command=self.add_user)
+        self.ajout_btn.place(x=850, y=60, height=35, width=150)
 
              ##### Liste Utilisateur
                     #3 Creation  de frame
         listeFrame = Frame(frame, bd=3, relief=RIDGE)
-        listeFrame.place(x=180, y=180, height=650, width=1080)
+        listeFrame.place(x=80, y=120, height=450, width=1100)
 
         scroll_x = Scrollbar(listeFrame, orient=VERTICAL)
         scroll_x.pack(side=RIGHT, fill=Y)
