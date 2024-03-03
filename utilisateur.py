@@ -14,7 +14,7 @@ class utilisateur:
     def __init__(self, root):
         self.root = root 
         self.root.title("Utilisateur")
-        self.root.geometry("1400x1000")
+        self.root.geometry("1400x850")
         self.root.config(bg="#f2eeee")
         self.root.resizable(False, False)
 
