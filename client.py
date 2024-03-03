@@ -117,6 +117,19 @@ class Client:
         self.entre_nom_client =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
         self.entre_nom_client.place(x=180, y=25, width=250)
 
+
+
+
+        ######  
+
+        
+
+
+        ######
+
+
+
+
                 ## Prenom
         lbl_prenom_client = Label(frame, text="Prenom  :", font=("Arial", 14), bg="white").place(x=50, y=85)
 
