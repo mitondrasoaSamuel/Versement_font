@@ -64,7 +64,7 @@ class admin:
 
 
                 ### Menu utilisateur
-        utilisateur_btn = tk.Button(options_fm, text="Utilisatuer", font=("Arial", 20, "bold"), bd=0, fg="#1c1b1b"
+        utilisateur_btn = tk.Button(options_fm, text="Utilisateur", font=("Arial", 20, "bold"), bd=0, fg="#1c1b1b"
                                     , activeforeground="#0097e8", command=lambda: switch(indicator_lb=utilisateur_indicator_lb,page=utilisateur_page))
         utilisateur_btn.place(x=700, y=0, width=330, height=70)  
 
