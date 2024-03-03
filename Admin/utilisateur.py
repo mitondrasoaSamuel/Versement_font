@@ -68,9 +68,9 @@ class Utilisateur:
 
         ###  Bouton 
          ###  Bouton 
-                ## Ajouter
+                ## reinitialiser
         
-        self.reset_btn = Button(frame, text="Reinitialiser", font=("times new roman", 14, "bold"), cursor="hand2", bg="gray", state="normal", command=self.add_user)
+        self.reset_btn = Button(frame, text="Reinitialiser", font=("times new roman", 14, "bold"), cursor="hand2", bg="gray", state="normal", command=self.reset_user)
         self.reset_btn.place(x=600, y=60, height=35, width=150)
         
                 ## Ajouter
