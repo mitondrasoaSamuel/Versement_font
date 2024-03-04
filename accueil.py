@@ -22,12 +22,12 @@ class Accueil:
         ax.bar(labels, values)
 
         # Rotate x-axis labels for better readability
-        plt.xticks(rotation=45, ha="right")
+        # plt.xticks(rotation=25, ha="right")
 
         # Set labels and title
         ax.set_xlabel("Clients")
         ax.set_ylabel("Solde")
-        ax.set_title("Versement par client")
+        ax.set_title("Solde par Client")
 
         # Embed the plot into Tkinter window
         chart_canvas = FigureCanvasTkAgg(fig, master=frame)
@@ -36,7 +36,7 @@ class Accueil:
         
     def __init__(self, frame):
         accueil_page_lb = tk.Label(frame, text="GESTION VERSEMENT BANCAIRES", font=("Arial", 16, "bold"), fg="#1c1b1b")
-        accueil_page_lb.pack(pady=80)
+        accueil_page_lb.pack(pady=20)
 
         self.generate_bar_chart(frame)
         #  #### Bouton Deconnecter
