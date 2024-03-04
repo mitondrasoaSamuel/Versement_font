@@ -172,14 +172,14 @@ class Client:
         ###  Bouton 
                 ## Supprimer
         
-        self.supprimer_btn = Button(frame, text="Supprimer", font=("times new roman", 14, "bold"), cursor="hand2", bg="red", state="normal", command=self.delete_client)
+        # self.supprimer_btn = Button(frame, text="Supprimer", font=("times new roman", 14, "bold"), cursor="hand2", bg="red", state="normal", command=self.delete_client)
         # self.supprimer_btn.place(x=540, y=110, height=40, width=150)
 
 
         ###  Bouton 
                 ## Modifier
         
-        self.modifier_btn = Button(frame, text="Modifier", font=("times new roman", 14, "bold"), cursor="hand2", bg="gray", state="normal", command=self.update_client)
+        # self.modifier_btn = Button(frame, text="Modifier", font=("times new roman", 14, "bold"), cursor="hand2", bg="gray", state="normal", command=self.update_client)
         # self.modifier_btn.place(x=740, y=110, height=40, width=150)
 
         ##### Liste Versement
