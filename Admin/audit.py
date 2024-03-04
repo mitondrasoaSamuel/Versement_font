@@ -122,9 +122,17 @@ class Audit:
         self.display_graph.place(x=80, y=480, height=40, width=180)
         
         total = self.get_total()
-        lbl_ajout= Label(frame, text="TOTAL AJOUT : " + str(total["add"]), font=("Arial", 12, "bold"))
-        lbl_ajout.place(x=350, y=490)
-        lbl_modif = Label(frame, text="TOTAL MODIFICATION : " + str(total["edit"]), font=("Arial", 12, "bold"))
-        lbl_modif.place(x=650, y=490)
-        lbl_suppr = Label(frame, text="TOTAL SUPPRESSION : " + str(total["delete"]), font=("Arial", 12, "bold"))
-        lbl_suppr.place(x=950, y=490)
+        if(total and "add" in total): 
+            lbl_ajout= Label(frame, text="TOTAL AJOUT : " + str(total["add"]), font=("Arial", 12, "bold"))
+            lbl_ajout.place(x=350, y=490)
+            lbl_modif = Label(frame, text="TOTAL MODIFICATION : " + str(total["edit"]), font=("Arial", 12, "bold"))
+            lbl_modif.place(x=650, y=490)
+            lbl_suppr = Label(frame, text="TOTAL SUPPRESSION : " + str(total["delete"]), font=("Arial", 12, "bold"))
+            lbl_suppr.place(x=950, y=490)    
+        else: 
+            lbl_ajout= Label(frame, text="TOTAL AJOUT : 0", font=("Arial", 12, "bold"))
+            lbl_ajout.place(x=350, y=490)
+            lbl_modif = Label(frame, text="TOTAL MODIFICATION : 0", font=("Arial", 12, "bold"))
+            lbl_modif.place(x=650, y=490)
+            lbl_suppr = Label(frame, text="TOTAL SUPPRESSION : 0", font=("Arial", 12, "bold"))
+            lbl_suppr.place(x=950, y=490)
