@@ -9,7 +9,7 @@ class API:
     USER_REGISTER =  API + "register"
     AUDIT_URL_TOTAL = API + "audit/total"
 
-    TOKEN = "1|Alquur2FPriNJ7mPrXxNSzswP4yDGGXRHBYKr4Jbc3d7af61"
+    TOKEN = "6|F9z6xWmgb8va3zMp2MMwvpz5bi9BKAtm6qIHY1zY3baa7466"
     HEADER = {"Authorization" : f"Bearer {TOKEN}"}
 
     def set_token(self, data):

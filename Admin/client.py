@@ -15,6 +15,7 @@ from tkinter import ttk
 
 class Client:
     def fetch_client(self):
+        print(API.HEADER)
         #### list versement
         data = req.get(API.CLIENT_URL, headers=API.HEADER).json()
 
