@@ -68,26 +68,30 @@ class Client:
         res = req.put(API.CLIENT_URL+"/"+str(self.get_client_id()), dataClient,headers=self.HEADER).json()
 
         if(res):
-            messagebox.showinfo("MODIFICATION CLIENT", "Modification avec succes")
             self.fetch_client()
             self.reset_client()
-            self.show_buttons()
-
+            messagebox.showinfo("MODIFICATION CLIENT", "Modification avec succes")
+            
         else:
             messagebox.showerror("MODIFICATION CLIENT", "Erreur de modification")
+        
+        # Restore buttons to initial state after updating
+        self.show_buttons_add_reset()
         
     def delete_client(self):
         res = req.delete(API.CLIENT_URL+"/"+str(self.get_client_id()), headers=self.HEADER).json()
 
         if(res):
-            messagebox.showinfo("SUPPRESSION CLIENT", "Suppression avec succes")
             self.fetch_client()
             self.reset_client()
-
+            messagebox.showinfo("SUPPRESSION CLIENT", "Suppression avec succes")
+            
         else:
             messagebox.showerror("SUPPRESSION CLIENT", "Erreur de suppression")
+            
+        # Restore buttons to initial state after updating
+        self.show_buttons_add_reset()
         
-
     def generer_numero_compte(self):
         numero_compte = ''.join([str(random.randint(1, 9)) for _ in range(8)])  # Vous pouvez ajuster la longueur du numéro de compte si nécessaire
         return numero_compte
@@ -108,60 +112,63 @@ class Client:
             self.entre_solde.insert(0, item["values"][3])
         
         self.entre_compte.config(state="readonly")
-        self.hide_buttons()
+        self.hide_buttons_edit_update()
 
-    def show_buttons(self):
-        self.supprimer_btn.place_forget()
-        self.modifier_btn.place_forget()
-        self.ajout_btn.place(x=330, y=150, height=40, width=150)
-        self.reinitialiser_btn.place(x=1000, y=150, height=40, width=160)
+    def show_buttons_add_reset(self):
+        # self.supprimer_btn.place_forget()
+        # self.modifier_btn.place_forget()
+        self.ajout_btn.config(text="Ajouter", command=self.add_client)
+        self.reinitialiser_btn.config(text="Reinitialiser", command=self.reset_client)
     
-    def hide_buttons(self):
-        self.ajout_btn.place_forget()
-        self.reinitialiser_btn.place_forget()
-        self.supprimer_btn.place(x=330, y=150, height=40, width=150)
-        self.modifier_btn.place(x=1000, y=150, height=40, width=160)
+    def hide_buttons_edit_update(self):
+        self.ajout_btn.config(text="Modifier", command=self.update_client)
+        self.reinitialiser_btn.config(text="Supprimer", command=self.delete_client)
        
     def __init__(self, frame):
 
         ###### Contenu
-        # Nom Client
         
-        lbl_nom_client = Label(frame, text="Nom :", font=("Arial", 14)).place(x=170, y=25)
-
-        self.entre_nom_client =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
-        self.entre_nom_client.place(x=310, y=25, width=250)
-
-
-                ## Prenom
-        lbl_prenom_client = Label(frame, text="Prenom  :", font=("Arial", 14)).place(x=170, y=65)
-
-        self.entre_prenoms_client =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
-        self.entre_prenoms_client.place(x=310, y=65, width=250)
-        
-
         # Num_compte
-        lbl_num_compte = Label(frame, text="N° Compte :", font=("Arial", 14)).place(x=900, y=25)
+        lbl_num_compte = Label(frame, text="N° Compte :", font=("Arial", 14)).place(x=250, y=25)
 
         self.entre_compte =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
         self.entre_compte.insert(0, self.generer_numero_compte())  # Insérer le numéro de compte aléatoire
         self.entre_compte.config(state="readonly")
-        self.entre_compte.place(x=1020, y=25, width=250)
-               
+        self.entre_compte.place(x=400, y=25, width=250)
+        
+        # Nom Client
+        
+        lbl_nom_client = Label(frame, text="Nom :", font=("Arial", 14)).place(x=250, y=60)
 
+        self.entre_nom_client =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
+        self.entre_nom_client.place(x=400, y=60, width=250)
+
+
+                ## Prenom
+        lbl_prenom_client = Label(frame, text="Prenom  :", font=("Arial", 14)).place(x=800, y=25)
+
+        self.entre_prenoms_client =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
+        self.entre_prenoms_client.place(x=890, y=25, width=250)
+        
                 # solde
-        lbl_solde = Label(frame, text="Solde :", font=("Arial", 14)).place(x=928, y=65)
+        lbl_solde = Label(frame, text="Solde :", font=("Arial", 14)).place(x=800, y=65)
 
         self.entre_solde =  Entry(frame, font=("Arial", 14), bg="lightyellow")    
-        self.entre_solde.place(x=1020, y=65, width=250)
+        self.entre_solde.place(x=890, y=65, width=250)
       
 
         ###  Bouton 
                 ## Ajouter
         
         self.ajout_btn = Button(frame, text="Ajouter", font=("times new roman", 14, "bold"), cursor="hand2", bg="green", state="normal", command=self.add_client)
-        self.ajout_btn.place(x=360, y=110, height=40, width=150)
+        self.ajout_btn.place(x=990, y=110, height=40, width=150)
 
+        ###  Bouton 
+                ## Reinitialiser
+        
+        self.reinitialiser_btn = Button(frame, text="Reinitialiser", font=("times new roman", 20, "bold"), cursor="hand2", state="normal", command=self.reset_client)
+        self.reinitialiser_btn.place(x=800, y=110, height=40, width=160)
+        
         ###  Bouton 
                 ## Supprimer
         
@@ -175,13 +182,6 @@ class Client:
         self.modifier_btn = Button(frame, text="Modifier", font=("times new roman", 14, "bold"), cursor="hand2", bg="gray", state="normal", command=self.update_client)
         # self.modifier_btn.place(x=740, y=110, height=40, width=150)
 
-
-        ###  Bouton 
-                ## Reinitialiser
-        
-        self.reinitialiser_btn = Button(frame, text="Reinitialiser", font=("times new roman", 20, "bold"), cursor="hand2", state="normal", command=self.reset_client)
-        self.reinitialiser_btn.place(x=1000, y=150, height=40, width=160)
-      
         ##### Liste Versement
         #3 Creation  de frame
         listeFrame = Frame(frame, bd=3, relief=RIDGE)
