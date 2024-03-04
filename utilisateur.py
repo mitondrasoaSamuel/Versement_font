@@ -16,7 +16,7 @@ class utilisateur:
         self.root.title("Utilisateur")
         self.root.geometry("1400x850")
         self.root.config(bg="#f2eeee")
-        self.root.resizable(False, False)
+        # self.root.resizable(False, False)
 
         ### Fonction Menu
         def switch(indicator_lb, page):
