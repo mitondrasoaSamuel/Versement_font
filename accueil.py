@@ -22,7 +22,7 @@ class Accueil:
         ax.bar(labels, values)
 
         # Rotate x-axis labels for better readability
-        # plt.xticks(rotation=25, ha="right")
+        plt.xticks(rotation=30, ha="right")
 
         # Set labels and title
         ax.set_xlabel("Clients")

@@ -10,6 +10,10 @@ class Client:
     ### Gerer utilisateur connecte 
     HEADER = API.HEADER
     
+    def cancel_action(self):
+        self.show_buttons_add_reset()
+        self.reset_client()
+        
     def reset_client(self):
         self.entre_compte.config(state="normal")
         self.entre_compte.insert(0, self.generer_numero_compte()) 
@@ -113,6 +117,7 @@ class Client:
         
         self.entre_compte.config(state="readonly")
         self.hide_buttons_edit_update()
+        self.btn_cancel.place(x=560, y=110, height=40, width=150)
 
     def show_buttons_add_reset(self):
         # self.supprimer_btn.place_forget()
@@ -181,6 +186,8 @@ class Client:
         
         # self.modifier_btn = Button(frame, text="Modifier", font=("times new roman", 14, "bold"), cursor="hand2", bg="gray", state="normal", command=self.update_client)
         # self.modifier_btn.place(x=740, y=110, height=40, width=150)
+        
+        self.btn_cancel = Button(frame, text="Annuler", font=("times new roman", 14, "bold"), cursor="hand2", bg="red", state="normal", command=self.cancel_action)
 
         ##### Liste Versement
         #3 Creation  de frame

@@ -131,14 +131,20 @@ class VersementFrame:
         
         self.entre_versement.config(state="readonly")
         self.hide_buttons_edit_update()
+        self.btn_cancel.place(x=560, y=110, height=40, width=150)
     
     def show_buttons_add_reset(self):
         self.ajout_btn.config(text="Ajouter", command=self.add_versement)
         self.reinitialiser_btn.config(text="Reinitialiser", command=self.reset_versement)
+        self.btn_cancel.place_forget()
     
     def hide_buttons_edit_update(self):
         self.ajout_btn.config(text="Modifier", command=self.update_versement)
         self.reinitialiser_btn.config(text="Supprimer", command=self.delete_versement)
+        
+    def cancel_action(self):
+        self.show_buttons_add_reset()
+        self.reset_versement()
         
     def __init__(self, frame):
 
@@ -193,10 +199,8 @@ class VersementFrame:
                 ###  Bouton 
                 ## Supprimer
         
-        # self.supprimer_btn = Button(frame, text="Supprimer", font=("times new roman", 14, "bold"), cursor="hand2", bg="red", state="normal", command=self.delete_versement)
-        # self.supprimer_btn.place(x=540, y=110, height=40, width=150)
-
-
+        self.btn_cancel = Button(frame, text="Annuler", font=("times new roman", 14, "bold"), cursor="hand2", bg="red", state="normal", command=self.cancel_action)
+        
         ###  Bouton 
                 ## Modifier
         
